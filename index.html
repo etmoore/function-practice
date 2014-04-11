@@ -127,7 +127,9 @@
           ]
         });
 
-        var movieList = [
+        
+        function movieParsing(){
+          var movieList = [
           'The Shawshank Redemption,1994,1043071',
           'The Godfather,1972,732416',
           'The Godfather: Part II,1974,474640',
@@ -138,11 +140,18 @@
           'The Lord of the Rings: The Return of the King,2003,738931',
           'Fight Club,1999,791186',
           'Star Wars: Episode V - The Empire Strikes Back,1980,503348'
-        ];
-
-        function movieParsing(){
-          for (var i = 0 ; i < movieList.length - 1; i++)
-          movarr = movieList.split(',')
+          ];
+          var movies = [];
+          // split each string into a new array and push into empty movies array
+          for (var i = 0 ; i < movieList.length - 1; i++){
+            movies.push(movieList[i].split(','));
+          };
+          // change the year from a string to a number
+          for (var i = 0 ; i < movies.length - 1; i++) {
+            movies[i][1].parseInt();
+          }
+          //return the sorted array
+          return movies.sort([2]);
         };
 
         createExample('Movie Parsing', {
@@ -152,7 +161,7 @@
             "</pre> create a function that splits the values into the title, \
             year, and number of votes and returns a list of movie objects \
             sorted by year.",
-          implementation: movieParsing
+          implementation: movieParsing,
         });
       });
     </script>
