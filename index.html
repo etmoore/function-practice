@@ -46,7 +46,7 @@
             reversed += text[i];
           }
           return reversed;
-        }
+        };
         createExample('Reverse Text', {
           description: 'Create a function that reverses the characters in \
             a string',
@@ -71,12 +71,37 @@
           ]
         });
 
+        /* multiply the amount by 100 to convert the total into pennies use modulo to keep breaking the total pennies into smaller and smaller bills
+        */
+        function tenderChange(amount) {
+          
+          var change = {
+            fives: 0,
+            ones: 0,
+            dimes: 0,
+            pennies: 0,
+          };
+
+          var bills = 0
+          var coins = 0
+
+          if (amount>=0) {
+            change.fives = Math.floor(amount / 5);
+            bills = amount - (change.fives * 5);
+            change.ones = Math.floor(bills);
+            coins = Math.floor(bills % 1 * 100);
+            change.dimes = Math.floor(coins / 10);
+            change.pennies = coins % 10;
+          }
+          return change
+        };
+
         createExample('Tender Change', {
           description: 'Write a function that given a dollar amount returns \
             the change in bills and coins. For instance, given \
             <code>7.23</code> it should return: \
             <pre>{ fives: 1, ones: 2, dimes: 2, pennies: 3 }</pre>',
-          implementation: null,
+          implementation: tenderChange,
           validation: [
             {
               input: 7.23,
@@ -115,6 +140,11 @@
           'Star Wars: Episode V - The Empire Strikes Back,1980,503348'
         ];
 
+        function movieParsing(){
+          for (var i = 0 ; i < movieList.length - 1; i++)
+          movarr = movieList.split(',')
+        };
+
         createExample('Movie Parsing', {
           description: "Given the following comma separated list of IMDb top \
             rated movies: <pre>var movieList = " +
@@ -122,7 +152,7 @@
             "</pre> create a function that splits the values into the title, \
             year, and number of votes and returns a list of movie objects \
             sorted by year.",
-          implementation: null
+          implementation: movieParsing
         });
       });
     </script>
